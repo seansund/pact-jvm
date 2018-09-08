@@ -212,7 +212,7 @@ public class PactDslResponse {
         }
 
         responseMatchers.addCategory(parent.getMatchers());
-        responseGenerators.addGenerators(parent.generators);
+        responseGenerators.addGenerators(parent.getGenerators());
         if (parent.getBody() != null) {
             responseBody = OptionalBody.body(parent.getBody().toString());
         } else {

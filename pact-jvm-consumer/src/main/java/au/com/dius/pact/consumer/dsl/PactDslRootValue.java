@@ -30,7 +30,7 @@ import java.util.UUID;
 /**
  * Matcher to create a plain root matching strategy. Used with text/plain to match regex responses
  */
-public class PactDslRootValue extends DslPart {
+public class PactDslRootValue extends PactDslJson<PactDslJson> {
 
   private static final String USE_PACT_DSL_JSON_ARRAY_FOR_ARRAYS = "Use PactDslJsonArray for arrays";
   private static final String USE_PACT_DSL_JSON_BODY_FOR_OBJECTS = "Use PactDslJsonBody for objects";
@@ -78,7 +78,7 @@ public class PactDslRootValue extends DslPart {
    * @deprecated Use PactDslJsonArray for arrays
    */
   @Override
-  public DslPart closeArray() {
+  public PactDslJson closeArray() {
     throw new UnsupportedOperationException(USE_PACT_DSL_JSON_ARRAY_FOR_ARRAYS);
   }
 
@@ -246,7 +246,7 @@ public class PactDslRootValue extends DslPart {
    * @deprecated Use PactDslJsonBody for objects
    */
   @Override
-  public DslPart closeObject() {
+  public PactDslJson closeObject() {
     throw new UnsupportedOperationException(USE_PACT_DSL_JSON_BODY_FOR_OBJECTS);
   }
 
@@ -777,6 +777,11 @@ public class PactDslRootValue extends DslPart {
     value.generators.addGenerator(Category.BODY, "", new ProviderStateGenerator(expression));
     value.setValue(example);
     return value;
+  }
+
+  @Override
+  public PactDslJson closeChild() {
+    throw new UnsupportedOperationException(USE_PACT_DSL_JSON_ARRAY_FOR_ARRAYS);
   }
 
 }

@@ -272,7 +272,7 @@ public class PactDslRequestWithPath extends PactDslRequestBase {
     public PactDslRequestWithPath body(DslPart body) {
         DslPart parent = body.close();
         requestMatchers.addCategory(parent.getMatchers());
-        requestGenerators.addGenerators(parent.generators);
+        requestGenerators.addGenerators(parent.getGenerators());
         requestBody = OptionalBody.body(parent.toString());
         if (!requestHeaders.containsKey(CONTENT_TYPE)) {
             requestHeaders.put(CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());

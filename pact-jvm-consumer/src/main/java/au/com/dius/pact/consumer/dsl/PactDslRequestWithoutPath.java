@@ -217,8 +217,8 @@ public class PactDslRequestWithoutPath extends PactDslRequestBase {
      */
     public PactDslRequestWithoutPath body(DslPart body) {
         DslPart parent = body.close();
-        requestMatchers.addCategory(parent.matchers);
-        requestGenerators.addGenerators(parent.generators);
+        requestMatchers.addCategory(parent.getMatchers());
+        requestGenerators.addGenerators(parent.getGenerators());
         requestBody = OptionalBody.body(parent.toString());
         if (!requestHeaders.containsKey(CONTENT_TYPE)) {
             requestHeaders.put(CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());

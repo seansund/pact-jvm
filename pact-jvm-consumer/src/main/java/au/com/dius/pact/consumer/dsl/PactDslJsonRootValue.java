@@ -29,7 +29,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
-public class PactDslJsonRootValue extends DslPart {
+public class PactDslJsonRootValue extends PactDslJson<PactDslJson> {
 
   private static final String USE_PACT_DSL_JSON_ARRAY_FOR_ARRAYS = "Use PactDslJsonArray for arrays";
   private static final String USE_PACT_DSL_JSON_BODY_FOR_OBJECTS = "Use PactDslJsonBody for objects";
@@ -94,7 +94,7 @@ public class PactDslJsonRootValue extends DslPart {
    * @deprecated Use PactDslJsonArray for arrays
    */
   @Override
-  public DslPart closeArray() {
+  public PactDslJson closeArray() {
     throw new UnsupportedOperationException(USE_PACT_DSL_JSON_ARRAY_FOR_ARRAYS);
   }
 
@@ -262,7 +262,7 @@ public class PactDslJsonRootValue extends DslPart {
    * @deprecated Use PactDslJsonBody for objects
    */
   @Override
-  public DslPart closeObject() {
+  public PactDslJson closeObject() {
     throw new UnsupportedOperationException(USE_PACT_DSL_JSON_BODY_FOR_OBJECTS);
   }
 
@@ -808,4 +808,8 @@ public class PactDslJsonRootValue extends DslPart {
     return value;
   }
 
+  @Override
+  public PactDslJson closeChild() {
+    throw new UnsupportedOperationException(USE_PACT_DSL_JSON_BODY_FOR_OBJECTS);
+  }
 }
